@@ -3,6 +3,7 @@ package net.bubblecraft.main;
 import net.bubblecraft.files.PlayerData;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 public class BubbleHome {
@@ -31,10 +32,11 @@ public class BubbleHome {
 	public void getHome(Player p, String str) {
 		PlayerData pd = BubbleCraft.pDataMap.get(p);
 		
+		World world = pd.getWorld(str + ".world");
 		int x = pd.getInt(str + ".x");
 		int y = pd.getInt(str + ".y");
 		int z = pd.getInt(str + ".z");
 		
-		p.teleport(new Location(p.getWorld(), x, y, z));
+		p.teleport(new Location(world, x, y, z));
 	}
 }

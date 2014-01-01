@@ -2,17 +2,17 @@ package net.bubblecraft.files;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
-import net.bubblecraft.main.Messager;
-
+import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class PlayerData {
 	private YamlConfiguration pData;
 	private File pDataFile;
 	private String name;
+	Logger log = Logger.getLogger("Minecraft");
 	
-	Messager msgr;
 
 	// Setting up the player file.
 	public PlayerData(File pDataFile, String name) {
@@ -32,7 +32,7 @@ public class PlayerData {
 			save();
 			return true;
 		} catch (Exception e) {
-			msgr.sendConsole("Player File For " + name + " Failed To Load Error Returned:/n" + e.getMessage());
+			log.info("Player File For " + name + " Failed To Load Error Returned:/n" + e.getMessage());
 			return false;
 		}
 	}
@@ -42,7 +42,7 @@ public class PlayerData {
 		try {
 			pData.save(pDataFile);
 		} catch (IOException e) {
-			msgr.sendConsole("Player File For " + name + " Failed To Save Error Returned:/n" + e.getMessage());
+			log.info("Player File For " + name + " Failed To Save Error Returned:/n" + e.getMessage());
 		}
 		return true;
 	}
@@ -50,6 +50,7 @@ public class PlayerData {
 	// Load the defaults of player file.
 	private void loadDefaults() {
 		pData.addDefault("Player.Name", name);
+		pData.addDefault("Player.Chat Color", "§f");
 		pData.options().copyDefaults(true);
 	}
 	
@@ -64,7 +65,7 @@ public class PlayerData {
 		return path;
 	}
 	
-	// Set Doubles
+	// Set Ints
 	public void setInt(String path, int item) {
 		pData.set(path, item);
 		save();
@@ -73,5 +74,15 @@ public class PlayerData {
 	// Get Ints.
 	public int getInt(String path) {
 		return pData.getInt(path);
+	}
+	
+	// Set Worlds
+	public void setWorld(String path, World world) {
+		pData.set(path, world);
+	}
+	
+	// Get Worlds
+	public World getWorld(String path) {
+		return (World) pData.get(path);
 	}
 }

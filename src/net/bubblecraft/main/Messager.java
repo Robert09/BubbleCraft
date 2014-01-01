@@ -1,30 +1,33 @@
 package net.bubblecraft.main;
 
-import java.util.logging.Logger;
-
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
+
 
 public class Messager {
-	Logger log = Logger.getLogger("Minecraft");
-	ChatColor GOLD = ChatColor.GOLD;
-	ChatColor AQUA = ChatColor.AQUA;
-	ChatColor GREEN = ChatColor.GREEN;
-	ChatColor DRED = ChatColor.DARK_RED;
+
+	private Messager() { }
 	
-	Player p;
+	private static Messager instance = new Messager();
 	
-	public Messager(Player p) {
-		this.p = p;
+	static Messager getInstance() {
+		return instance;
 	}
 	
-	// Send the console a message.
-	public void sendConsole(String msg) {
-		log.info(AQUA+"["+GOLD+"BubbleCraft"+AQUA+"]"+DRED + msg);
+	public void info(CommandSender s, String msg) {
+		msg(s, ChatColor.YELLOW, msg);
 	}
 	
-	// Send the player a message.
-	public void sendPlayer(String msg) {
-		p.sendMessage(AQUA+"["+GOLD+"BubbleCraft"+AQUA+"]"+DRED + msg);
+	public void severe(CommandSender s, String msg) {
+		msg(s, ChatColor.DARK_RED, msg);
 	}
+	
+	public void good(CommandSender s, String msg) {
+		msg(s, ChatColor.GREEN, msg);
+	}
+	
+	public void msg(CommandSender s, ChatColor color, String msg) {
+		s.sendMessage(color + msg);
+	}
+	
 }

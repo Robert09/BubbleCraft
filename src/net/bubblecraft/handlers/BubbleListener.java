@@ -2,6 +2,7 @@ package net.bubblecraft.handlers;
 
 import java.util.Random;
 
+import net.bubblecraft.files.PlayerData;
 import net.bubblecraft.main.BubbleCraft;
 
 import org.bukkit.ChatColor;
@@ -39,22 +40,11 @@ public class BubbleListener implements Listener {
 		Player p = e.getPlayer();
 		String msg = e.getMessage().toLowerCase();
 		String troll = ChatColor.LIGHT_PURPLE + "I'm a pretty little princess!";
-		String name = p.getPlayer().getName();
+		//String name = p.getPlayer().getName();
+		PlayerData pd = BubbleCraft.pDataMap.get(p);
 		
-		if(name.equalsIgnoreCase("BabyYourMyWorld")) {
-			e.setMessage(ChatColor.DARK_PURPLE + e.getMessage());
-		}
-		
-		if (name.equalsIgnoreCase("o3bubbles09")) {
-			e.setMessage(ChatColor.DARK_AQUA + e.getMessage());
-		}
-
-		if (name.equalsIgnoreCase("holden98")) {
-			e.setMessage(ChatColor.DARK_AQUA + e.getMessage());
-		}
-		
-		if(name.equalsIgnoreCase("jgrantham41")) {
-			e.setMessage(ChatColor.LIGHT_PURPLE + e.getMessage());
+		if(pd.getString("Chat Color").isEmpty()) {
+			e.setMessage(pd.getString("Chat Color" + e.getMessage()));
 		}
 
 		if (msg.contains("f u c k") || msg.contains("fuck")

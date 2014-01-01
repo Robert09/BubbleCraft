@@ -20,7 +20,7 @@ public class SettingsManager {
 		return instance;
 	}
 
-	private SettingsManager() {
+	public SettingsManager() {
 
 	}
 

@@ -10,7 +10,7 @@ public class Messager {
 	
 	private static Messager instance = new Messager();
 	
-	static Messager getInstance() {
+	public static Messager getInstance() {
 		return instance;
 	}
 	

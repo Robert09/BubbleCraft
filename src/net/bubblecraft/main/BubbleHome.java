@@ -14,7 +14,7 @@ public class BubbleHome {
 	}
 	
 	// Setting the home
-	public void setHome(Player p, String str) {
+	public static void setHome(Player p, String str) {
 		//String name = p.getName();
 		PlayerData pd = BubbleCraft.pDataMap.get(p);
 		
@@ -29,7 +29,7 @@ public class BubbleHome {
 	}
 	
 	// Getting the home
-	public void getHome(Player p, String str) {
+	public static void getHome(Player p, String str) {
 		PlayerData pd = BubbleCraft.pDataMap.get(p);
 		
 		World world = pd.getWorld(str + ".world");

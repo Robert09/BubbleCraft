@@ -44,7 +44,7 @@ public class BubbleCraft extends JavaPlugin implements Listener {
 		// Commands
 		BubblesCommands cm = new BubblesCommands();
 		cm.setup();
-		getCommand("bubblecraft").setExecutor(cm);;
+		getCommand("bubblecraft").setExecutor(cm);
 		
 		// Config stuff.
 		settings.setup(this);

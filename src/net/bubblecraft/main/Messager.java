@@ -5,6 +5,23 @@ import org.bukkit.command.CommandSender;
 
 
 public class Messager {
+	
+	public enum MessageType {
+	
+		INFO(ChatColor.AQUA),
+		GOOD(ChatColor.GOLD),
+		BAD(ChatColor.DARK_RED);
+		
+		private ChatColor color;
+		
+		MessageType(ChatColor color) {
+			this.color = color;
+		}
+		
+		public ChatColor getColor() {
+			return color;
+		}
+	}
 
 	private Messager() { }
 	
@@ -14,20 +31,11 @@ public class Messager {
 		return instance;
 	}
 	
-	public void info(CommandSender s, String msg) {
-		msg(s, ChatColor.YELLOW, msg);
-	}
+	private String prefix = ChatColor.DARK_AQUA + "["+ChatColor.GOLD+"BubbleCraft"+ChatColor.DARK_AQUA+"] " + ChatColor.RESET;
 	
-	public void severe(CommandSender s, String msg) {
-		msg(s, ChatColor.DARK_RED, msg);
+	public void msg(CommandSender s, MessageType type, String... messages) {
+		for(String msg : messages) {
+			s.sendMessage(prefix + type.getColor() + msg);
+		}
 	}
-	
-	public void good(CommandSender s, String msg) {
-		msg(s, ChatColor.GREEN, msg);
-	}
-	
-	public void msg(CommandSender s, ChatColor color, String msg) {
-		s.sendMessage(color + msg);
-	}
-	
 }

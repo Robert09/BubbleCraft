@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class PlayerData {
@@ -50,7 +49,7 @@ public class PlayerData {
 	// Load the defaults of player file.
 	private void loadDefaults() {
 		pData.addDefault("Player.Name", name);
-		pData.addDefault("Player.Chat Color", "§f");
+		pData.addDefault("Player.ChatColor", "§f");
 		pData.options().copyDefaults(true);
 	}
 	
@@ -74,15 +73,5 @@ public class PlayerData {
 	// Get Ints.
 	public int getInt(String path) {
 		return pData.getInt(path);
-	}
-	
-	// Set Worlds
-	public void setWorld(String path, World world) {
-		pData.set(path, world);
-	}
-	
-	// Get Worlds
-	public World getWorld(String path) {
-		return (World) pData.get(path);
 	}
 }
